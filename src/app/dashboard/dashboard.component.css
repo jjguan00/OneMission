@@ -1,0 +1,82 @@
+#dashboard{
+	opacity: .8;
+	background: linear-gradient(lightgreen, white);
+	height: 75px;
+	z-index: 2;
+}
+.about{
+	position: absolute;
+	margin-top: 25px;
+}
+.about a{
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+}
+
+.home{
+	position: absolute;
+	font-size: 18px;
+	margin-top: 25px;
+	margin-left: 600px;
+}
+
+.home a{
+	text-decoration: none;
+	color: white;
+}
+
+.signUp{
+	position:absolute;
+	margin-top: 25px;
+	font-size: 18px;
+	margin-left: 1180px;
+}
+.signUp a{
+	text-decoration: none;
+	color: white;
+}
+
+.logIn{
+	position: absolute;
+	font-size: 18px;
+	margin-top: 25px;
+	margin-left: 1100px;
+}
+.logIn a{
+	text-decoration: none;
+	color: white;
+}
+
+.dropdown {
+    position: relative;
+    margin-top:25px;
+    margin-right:10px;
+    float:right;
+    display: inline-block;
+    text-decoration: none;
+	color: white;
+	font-size: 18px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: lightgreen;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 4px;
+	left: auto;
+}
+.dropdown-content ul {
+}
+.dropdown-content ul li {
+	float:left;
+	list-style-type:none;
+	background-color: lightgreen;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

@@ -1,0 +1,31 @@
+<div id="dashboard">
+	<div class="about">
+		<a href="">About</a>
+	</div>
+	<div class= "home">
+		<a [routerLink]= "['']">Home</a><br>
+	</div>
+	<div *ngIf="user.name;then content else other_content">here is ignored</div>
+	<ng-template #content>
+		<div class="dropdown">
+  			<span>DashBoard</span>
+  			<div class="dropdown-content">
+  				<ul>
+    				<li><a [routerLink] = "['/profile', user._id]">Profile</a></li>
+					<li><a [routerLink] = "['/setting', user._id]">Account Setting</a></li>
+					<li><a [routerLink] = "['/mission']"> Create a Mission </a></li>
+					<li><button style="border:none;" (click)="logOut()"> Log Out </button></li>
+				</ul>
+			</div>
+		</div>
+	</ng-template><br>
+	<ng-template #other_content>
+		<div class="logIn">
+			<a [routerLink] = "['/login']">Log In</a><br>
+		</div>
+		<div class="signUp">
+			<a [routerLink] = "['/signup']">Sign Up</a><br>
+		</div>
+	</ng-template><br>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,14 @@
+{{mission.title}}<br>
+{{mission.content}}<br>
+{{mission.createdAt}}<br>
+By {{mission.creator}}
+
+<ul *ngFor = "let reply of mission._replys" style= "list-style: none;">
+	<li>Reply: {{reply.content}}</li>
+	<li>Name: {{reply.creator}}</li>
+</ul>
+
+<form (submit) = "createReply(mission._id)">
+	<input type="text" name= reply.content [(ngModel)] = reply.content>
+	<input type= "submit" value = "reply">
+</form>

@@ -4,9 +4,13 @@
   <meta charset="utf-8">
   <title>OneMission</title>
   <base href="/">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript">
+    var stripe = Stripe('pk_live_SW4TZSOcCNlYf7Q1FQ5X2Cs5'); // use your test publishable key
+    var elements = stripe.elements();
+  </script>
 </head>
 <body>
   <app-root></app-root>

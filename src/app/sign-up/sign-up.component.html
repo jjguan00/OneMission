@@ -1,0 +1,54 @@
+<div id="dashboard">
+	<div class="about">
+		<a href="">About</a>
+	</div>
+	<div class= "home">
+		<a [routerLink]= "['']">Home</a><br>
+	</div>
+	<div *ngIf="user.name;then content else other_content">here is ignored</div>
+	<ng-template #content>
+		{{user.name}}
+		<button (click)="logOut()"> Log Out </button>
+		<a [routerLink] = "['/profile', user._id]"> Profile</a>
+		<a [routerLink] = "['/setting', user._id]">Account Setting</a>
+		<a [routerLink] = "['/mission']"> Create a Mission </a>
+	</ng-template><br>
+	<ng-template #other_content>
+		<div class="logIn">
+			<a [routerLink] = "['/login']">Log In</a><br>
+		</div>
+		<div class="signUp">
+			<a [routerLink] = "['/signup']">Sign Up</a><br>
+		</div>
+	</ng-template><br>
+</div>
+
+<div style="margin-top: 100px;margin-left: 500px; ">
+	<div class="col-md-4">
+		<div class="login-panel panel panel-default">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">Sign Up</h3>
+		    </div>
+		    <div class="panel-body">
+		        <form (submit) = "create()" role="form">
+		            <fieldset>
+		            	<div class="form-group">
+		                    <input class="form-control" placeholder="email" name= user.email [(ngModel)]= user.email type="text" autofocus="">
+		                </div>
+		                <div class="form-group">
+		                    <input class="form-control" placeholder="name" name= user.name [(ngModel)]= user.name type="text" autofocus="">
+		                </div>
+		                <div class="form-group">
+		                    <input class="form-control" placeholder="Password" name= user.password [(ngModel)]= user.password type="password" value="">
+		                </div>
+		                <div class="form-group">
+		                    <input class="form-control" placeholder="Password" name= user.password_confirm [(ngModel)]= user.password_confirm type="password" value="">
+		                </div>
+		                <!-- Change this to a button or input when using this as a form -->
+		                <input type= "submit" class="btn btn-sm btn-success" value="LogIn">
+		            </fieldset>
+		        </form>
+		    </div>
+		</div>
+	</div>
+</div>
