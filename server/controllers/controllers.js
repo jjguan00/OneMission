@@ -259,19 +259,29 @@ module.exports = {
 		}
 	},
 
+	saveCredit: function(req,res){
+		console.log(req.body)
+		if(req.session.user){
+			User.findOneAndUpdate({_id: req.session.user._id}, {customer_token: req.body.token}, function(err){
+				if(err){
+					console.log(err, "You did not save the token.")
+				}
+				else{
+					console.log("You attached the token to the user.")
+					res.json({result: "You saved the token"})
+				}
+			})
+		}
+	},
+
 	apiUpload: function (req, res, next) {
    // This grabs the additional parameters so in this case passing     
    // in "element1" with a value.
    var busboy = new Busboy({ headers: req.headers });
-   // The file upload has completed
    busboy.on('error', function (err) {
     throw err;
   	});
- //   busboy.on('file', function (field, stream, name, enc, mime) {
- //    files[field] = name;
- //    mimetype = "image"
- //    stream.resume();
-	// });
+
 	busboy.on('files', function(fieldname, file, filename, encoding, mimetype) {
       var saveTo = path.join('.', filename);
       console.log('Uploading: ' + saveTo);

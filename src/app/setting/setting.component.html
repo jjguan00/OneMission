@@ -11,20 +11,11 @@ Account Setting:
 
 {{user.name}}'s account info<br>
 
-Set Up Stripe Account:
-<form (submit)="charge()" method="post" id="payment-form">
-  <div class="form-row">
-    <label for="card-element">
-      Credit or debit card
-    </label>
-    <div id="card-element">
-      <!-- A Stripe Element will be inserted here. -->
-    </div>
-
-    <!-- Used to display form errors. -->
-    <div id="card-errors" role="alert"></div>
-  </div>
-
-  <button>Submit Payment</button>
-</form></body>
+Set Up Stripe Credit Card Info:
+<form (submit)="createToken()">
+	<input name="cardInfo.name" [(ngModel)]="cardInfo.name" placeholder = "Card Holder's Name">
+	<div id="card-element" class="field"></div>
+	<button type="submit"> Submit Credit Card Info</button>
+</form>
+</body>
 </html>

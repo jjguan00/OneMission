@@ -38,6 +38,7 @@ var missionSchema = new Schema(
 		contribution: {type: Number, min: 5},
 		received: {type: Number},
 		img: { data: Buffer, contentType: String },
+		customer_token: {type: Object},
 		creator: {type: String, required: true},
 		_user: {type: Schema.Types.ObjectId, ref: "User", required: true},
 		_pushs: [pushSchema],

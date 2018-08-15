@@ -45,4 +45,9 @@ export class UserService {
     console.log(customer)
     return this._http.post('/setCustomer', customer)
   }
+
+  saveCredit(token){
+    console.log(token)
+    return this._http.post('/saveCredit', token)
+  }
 }

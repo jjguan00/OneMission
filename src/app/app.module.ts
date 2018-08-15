@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { UserService } from './user.service';
 import { MissionService } from './mission.service';
@@ -41,7 +41,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxStripeModule.forRoot('pk_live_SW4TZSOcCNlYf7Q1FQ5X2Cs5')
+    NgxStripeModule.forRoot('pk_test_vC4PtpR0fskwCoe8w0DznKm7'),
+    ReactiveFormsModule
   ],
   providers: [ UserService, MissionService, PushService, ReplyService],
   bootstrap: [AppComponent]

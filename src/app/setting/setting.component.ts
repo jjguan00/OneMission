@@ -16,24 +16,23 @@ export class SettingComponent implements OnInit {
 
   user = {}
   verification = {}
+  cardInfo = {}
 
   constructor(
   	private _userService: UserService,
   	private _route: ActivatedRoute,
   	private _router: Router,
-    private stripeService: StripeService,
+    public stripeService: StripeService,
     private fb: FormBuilder
   	) { }
-  elementsOptions: ElementsOptions = {
-    locale: 'es'
-  };
+
 
   ngOnInit() {
   	this.checkLogIn()
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]]
     });
-    this.stripeService.elements(this.elementsOptions)
+    this.stripeService.elements()
     .subscribe(elements => {
       this.elements = elements;
       // Only mount the element the first time
@@ -56,6 +55,14 @@ export class SettingComponent implements OnInit {
         this.card.mount('#card-element');
       }
     });
+  }
+
+  createToken(){
+    console.log(this.card)
+    console.log(this.cardInfo)
+    this.stripeService.createToken(this.card, this.cardInfo).subscribe(result=>{
+      this._userService.saveCredit(result['token']).subscribe(data=> data)
+    })
   }
 
   checkLogIn(){
