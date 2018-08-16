@@ -94,30 +94,24 @@ module.exports = {
 		mission._user = req.session.user
 		mission.creator = req.session.user.name
 		mission.received = 0
-		if(req.session.user.verified == false){
-			console.log("You are not verified")
-			res.json("You or your organization has to be verified in order to create a mission.")
+		mission.save(function(err,mission){
+		if(err){
+			console.log(err)
 		}
 		else{
-			mission.save(function(err,mission){
-			if(err){
-				console.log(err)
-			}
-			else{
-				console.log(mission)
-				User.findOneAndUpdate({_id: req.session.user._id}, {$push: {_missions: mission}}, function(err){
-					if(err){
-						console.log("You have an error updating user")
-					}
-					else{
-						res.json( {mission: mission} )
-						console.log("You succesfully log your mission into your user.")
-					}
+			console.log(mission)
+			User.findOneAndUpdate({_id: req.session.user._id}, {$push: {_missions: mission}}, function(err){
+				if(err){
+					console.log("You have an error updating user")
+				}
+				else{
+					res.json( {mission: mission} )
+					console.log("You succesfully log your mission into your user.")
+				}
 
-				})
-			}
 			})
 		}
+		})
 	},
 
 	getMissions: function(req,res){
@@ -262,15 +256,51 @@ module.exports = {
 	saveCredit: function(req,res){
 		console.log(req.body)
 		if(req.session.user){
-			User.findOneAndUpdate({_id: req.session.user._id}, {customer_token: req.body.token}, function(err){
+			User.findOne({_id: req.session.user._id}, function(err,user){
 				if(err){
 					console.log(err, "You did not save the token.")
 				}
 				else{
-					console.log("You attached the token to the user.")
-					res.json({result: "You saved the token"})
+					console.log(user)
+					user.customer_token = req.params.id
+					user.save(function(err){
+						if(err){
+							console.log(err,"You failed to save credit card")
+						}
+						else{
+							console.log(user)
+							console.log("You attached the token to the user.")
+							res.json({result: "You saved the token"})
+						}
+					})
 				}
 			})
+		}
+	},
+
+	donate: function(req,res){
+		user = req.session.user
+		if(req.session.user){
+			console.log(user)
+			console.log(user.customer_id)
+			console.log(user.customer_token)
+			stripe.charges.create({
+				amount: 1000,
+                currency: "usd",
+                // customer: user.customer_id,
+                source: user.customer_token,
+			}).then(function(err, charge) {
+		       if(err) {
+		         console.log('something wrong', err);
+		       }
+		       if(charge) {
+		         console.log('charge done');
+		       };
+		    });
+		}
+		else{
+			console.log("You did not log in.")
+			res.json({error:"You need to log in to donate."})
 		}
 	},
 

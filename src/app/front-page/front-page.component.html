@@ -3,6 +3,10 @@
 		<li><a [routerLink]= "['/mission', mission._id]">{{mission.title}}</a></li>
 		<li>Amount Needed: ${{mission.contribution}}</li>
 		<li>Amount Recieved: ${{mission.received}}</li>
+		<form (submit)="donate()">
+			<input name=donation.amount [(ngModel)]= donation.amount>
+			<input type="submit" value="Donate">
+		</form>
 		<li>Push: {{mission._pushs.length}}<button (click)="createPush(mission._id)">Push</button></li>
 		<li>{{mission.createdAt}} By <a [routerLink] = "['/profile', mission._user]">{{mission.creator}}</a></li>
 	</ul>

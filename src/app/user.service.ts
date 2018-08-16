@@ -47,7 +47,6 @@ export class UserService {
   }
 
   saveCredit(token){
-    console.log(token)
-    return this._http.post('/saveCredit', token)
+    return this._http.get(`/saveCredit/${token}`)
   }
 }

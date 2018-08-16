@@ -32,7 +32,9 @@ module.exports = function(app){
 
 	app.post("/api/upload", controllers.apiUpload),
 
-	app.post("/saveCredit", controllers.saveCredit),
+	app.get("/saveCredit/:id", controllers.saveCredit),
+
+	app.post("/donate", controllers.donate),
 		
 	app.all("*", (req,res,next) => {
 		res.sendFile(path.resolve("./dist/oneMission/index.html"))

@@ -25,4 +25,8 @@ export class MissionService {
     console.log(image)
     return this._http.post(`/api/upload`, image)
   }
+
+  donate(donation){
+    return this._http.post('/donate',donation)
+  }
 }

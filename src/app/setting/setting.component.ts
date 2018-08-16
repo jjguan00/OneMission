@@ -61,7 +61,7 @@ export class SettingComponent implements OnInit {
     console.log(this.card)
     console.log(this.cardInfo)
     this.stripeService.createToken(this.card, this.cardInfo).subscribe(result=>{
-      this._userService.saveCredit(result['token']).subscribe(data=> data)
+      this._userService.saveCredit(result['token'].id).subscribe(data=> data)
     })
   }
 

@@ -3,7 +3,8 @@ import { UserService } from '../user.service';
 import { MissionService } from '../mission.service';
 import { PushService } from '../push.service';
 import { ReplyService } from '../reply.service';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute} from '@angular/router'
+import { StripeService, Elements, Element as StripeElement, ElementsOptions } from "ngx-stripe";
 
 
 @Component({
@@ -14,15 +15,22 @@ import { Router } from '@angular/router'
 export class FrontPageComponent implements OnInit {
   missions = []
   reply = {}
+  donation = {}
+  user :any
+
   constructor(
+    private _route: ActivatedRoute,
   	private _missionService: MissionService,
     private _pushService: PushService,
     private _replyService: ReplyService,
-  	private router: Router
+  	private router: Router,
+    private stripeService: StripeService
   	) { }
 
   ngOnInit() {
   	this.getMission();
+    this.user = this._route.queryParams['_value'];
+    console.log(this.user)
   }
 
   getMission(){
@@ -35,5 +43,9 @@ export class FrontPageComponent implements OnInit {
 
   createReply(id){
     this._replyService.createReply(id, this.reply).subscribe()
+  }
+
+  donate(){
+    this._missionService.donate(this.donation).subscribe();
   }
 }
