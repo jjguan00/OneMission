@@ -5,22 +5,12 @@
 	<div class= "home">
 		<a [routerLink]= "['']">Home</a><br>
 	</div>
-	<div *ngIf="user.name;then content else other_content">here is ignored</div>
-	<ng-template #content>
-		{{user.name}}
-		<button (click)="logOut()"> Log Out </button>
-		<a [routerLink] = "['/profile', user._id]"> Profile</a>
-		<a [routerLink] = "['/setting', user._id]">Account Setting</a>
-		<a [routerLink] = "['/mission']"> Create a Mission </a>
-	</ng-template><br>
-	<ng-template #other_content>
-		<div class="logIn">
-			<a [routerLink] = "['/login']">Log In</a><br>
-		</div>
-		<div class="signUp">
-			<a [routerLink] = "['/signup']">Sign Up</a><br>
-		</div>
-	</ng-template><br>
+	<div class="logIn">
+		<a [routerLink] = "['/login']">Log In</a><br>
+	</div>
+	<div class="signUp">
+		<a [routerLink] = "['/signup']">Sign Up</a><br>
+	</div>
 </div>
 
 <div style="margin-top: 100px;margin-left: 500px; ">

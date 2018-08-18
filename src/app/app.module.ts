@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { NgxStripeModule } from 'ngx-stripe';
+
 import { FileSelectDirective } from 'ng2-file-upload';
+
 import { UserService } from './user.service';
 import { MissionService } from './mission.service';
 import { PushService } from './push.service';
 import { ReplyService } from './reply.service';
+
 import { FrontPageComponent } from './front-page/front-page.component';
 import { ShowMissionComponent } from './show-mission/show-mission.component';
 import { AppComponent } from './app.component';
@@ -18,7 +22,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { MissionComponent } from './mission/mission.component';
 import { MissionUploadComponent } from './mission-upload/mission-upload.component';
 import { SettingComponent } from './setting/setting.component';
-import { NgxStripeModule } from 'ngx-stripe';
+import { SuccessComponent } from './setting/success/success.component';
+
 
 
 
@@ -34,7 +39,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     ShowMissionComponent,
     MissionUploadComponent,
     FileSelectDirective,
-    SettingComponent
+    SettingComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

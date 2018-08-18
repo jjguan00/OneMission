@@ -9,6 +9,9 @@ import { FrontPageComponent } from './front-page/front-page.component';
 import { ShowMissionComponent } from './show-mission/show-mission.component';
 import { MissionUploadComponent } from './mission-upload/mission-upload.component';
 import { SettingComponent} from './setting/setting.component';
+import { SuccessComponent } from './setting/success/success.component'
+
+
 const routes: Routes = [
 	{path: "", component: DashboardComponent, children:[
 		{path: "", component: FrontPageComponent },
@@ -17,6 +20,7 @@ const routes: Routes = [
 		{path: "mission/:id", component: ShowMissionComponent },
 		{path: "mission-upload/:id", component: MissionUploadComponent },
 		{path: "setting/:id", component: SettingComponent},
+		{path: "success", component:SuccessComponent}
 	]},
 	{path: "login", component: LogInComponent},
 	{path: "signup", component: SignUpComponent}

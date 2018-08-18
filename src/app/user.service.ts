@@ -49,4 +49,8 @@ export class UserService {
   saveCredit(token){
     return this._http.get(`/saveCredit/${token}`)
   }
+
+  stripeConnect(code){
+    return this._http.get(`/stripeConnect/${code}`)
+  }
 }

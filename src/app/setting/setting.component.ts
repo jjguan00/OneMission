@@ -13,7 +13,6 @@ export class SettingComponent implements OnInit {
   elements: Elements;
   card: StripeElement;
   stripeTest: FormGroup;
-
   user = {}
   verification = {}
   cardInfo = {}
@@ -24,7 +23,8 @@ export class SettingComponent implements OnInit {
   	private _router: Router,
     public stripeService: StripeService,
     private fb: FormBuilder
-  	) { }
+  	) {
+    }
 
 
   ngOnInit() {
@@ -77,6 +77,11 @@ export class SettingComponent implements OnInit {
         this._router.navigate(['/'])
       }
     )
+  }
+
+  stripe(){
+    window.location.href= "https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_DFWFRu2qAccz088if6te2IHAcpkNBhvM&scope=read_write"
+    })
   }
 
 }

@@ -35,6 +35,8 @@ module.exports = function(app){
 	app.get("/saveCredit/:id", controllers.saveCredit),
 
 	app.post("/donate", controllers.donate),
+
+	app.get("/stripeConnect/:code", controllers.stripeConnect),
 		
 	app.all("*", (req,res,next) => {
 		res.sendFile(path.resolve("./dist/oneMission/index.html"))

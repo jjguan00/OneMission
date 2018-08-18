@@ -11,11 +11,14 @@ Account Setting:
 
 {{user.name}}'s account info<br>
 
-Set Up Stripe Credit Card Info:
+Set Up Stripe Credit Card Info For Donation:
 <form (submit)="createToken()">
 	<input name="cardInfo.name" [(ngModel)]="cardInfo.name" placeholder = "Card Holder's Name">
 	<div id="card-element" class="field"></div>
 	<button type="submit"> Submit Credit Card Info</button>
 </form>
+
+Set Up Stripe Bank Account Info for Donation Pay Out:<br>
+<button style="border:none;" (click)="stripe()"> <img src="/assets/images/stripeConnect.png"></button>
 </body>
 </html>

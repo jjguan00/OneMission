@@ -25,7 +25,8 @@ export class FrontPageComponent implements OnInit {
     private _replyService: ReplyService,
   	private router: Router,
     private stripeService: StripeService
-  	) { }
+  	) { 
+    }
 
   ngOnInit() {
   	this.getMission();

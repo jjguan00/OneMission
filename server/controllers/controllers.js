@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt-as-promised');
 const session = require('express-session');
 const Busboy = require('busboy');
 const stripe = require('stripe')('sk_test_t29RHUvIY0BZjRPTaAryjG2C');
+var request = require('request');
 
 
 const Mission = mongoose.model('Mission');
@@ -289,6 +290,7 @@ module.exports = {
                 currency: "usd",
                 // customer: user.customer_id,
                 source: user.customer_token,
+                destination: "acct_1CnBesLKiGE48jV0"
 			}).then(function(err, charge) {
 		       if(err) {
 		         console.log('something wrong', err);
@@ -302,6 +304,25 @@ module.exports = {
 			console.log("You did not log in.")
 			res.json({error:"You need to log in to donate."})
 		}
+	},
+
+	stripeConnect: function(req,res){
+		var clientServerOptions = {
+            uri: 'https://connect.stripe.com/oauth/token',
+            body: JSON.stringify({
+            	'client_secret':"sk_test_t29RHUvIY0BZjRPTaAryjG2C",
+            	'code': req.params.code,
+            	'grant_type': "authorization_code"
+        	}),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        request(clientServerOptions, function (error, response) {
+            console.log(error,response.body);
+            return res.json({result: response});
+        });
 	},
 
 	apiUpload: function (req, res, next) {
